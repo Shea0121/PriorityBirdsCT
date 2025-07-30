@@ -145,10 +145,18 @@ leaflet() %>%
     overlayGroups = c("NDDB Areas", "Bird Sightings"),
     options = layersControlOptions(collapsed = FALSE)
   )
-getwd()
-install.packages("usethis")    
-library(usethis)
 
-create_github_token()
-gitcreds::gitcreds_set()
+
+#Species sighting frequencies 
+priority_df <- read.csv("filtered_priority_ebird.csv")
+
+
+priority_summary <- priority_df %>%
+  count(comName, sort = TRUE) %>%
+  rename(
+    "Bird Name" = comName,
+    "Sightings in Last 30 Days" = n
+  )
+
+print(priority_summary)
 
