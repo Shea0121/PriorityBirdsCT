@@ -1,0 +1,26 @@
+"speciesCode","comName","sciName","locId","locName","obsDt","howMany","obsValid","obsReviewed","locationPrivate","subId","exoticCategory"
+"rthhum","Ruby-throated Hummingbird","Archilochus colubris","L19590136","17 Coburn Ave, Stonington US-CT (41.3489,-71.9558)",2025-07-30,3,TRUE,FALSE,TRUE,"S263758095",NA
+"baleag","Bald Eagle","Haliaeetus leucocephalus","L34237185","Farmington River Trail, Collinsville US-CT 41.81847, -72.92201",2025-07-30,3,TRUE,FALSE,TRUE,"S263743174",NA
+"woothr","Wood Thrush","Hylocichla mustelina","L1512862","Nepaug Reservoir - From Torrington Ave",2025-07-30,1,TRUE,FALSE,FALSE,"S263736918",NA
+"greegr","Great Egret","Ardea alba","L2508666","Smith Neck Road Boat Ramp",2025-07-29,16,TRUE,FALSE,FALSE,"S263693173",NA
+"leater1","Least Tern","Sternula antillarum","L2508666","Smith Neck Road Boat Ramp",2025-07-29,2,TRUE,FALSE,FALSE,"S263693173",NA
+"pipplo","Piping Plover","Charadrius melodus","L109200","Greenwich Point Park",2025-07-29,1,TRUE,FALSE,FALSE,"S263688106",NA
+"whevir","White-eyed Vireo","Vireo griseus","L109200","Greenwich Point Park",2025-07-29,2,TRUE,FALSE,FALSE,"S263688106",NA
+"ambduc","American Black Duck","Anas rubripes","L50684877","166–298 Beacon Point Rd, Stratford US-CT (41.1779,-73.1247)",2025-07-29,3,TRUE,FALSE,TRUE,"S263635002",NA
+"sstspa","Saltmarsh Sparrow","Ammospiza caudacuta","L1880516","Hammonasset Beach SP--Meig's Point Parking Lot/Marshes",2025-07-29,4,TRUE,FALSE,FALSE,"S263670520",NA
+"ameoys","American Oystercatcher","Haematopus palliatus","L1880516","Hammonasset Beach SP--Meig's Point Parking Lot/Marshes",2025-07-29,1,TRUE,FALSE,FALSE,"S263670520",NA
+"prawar","Prairie Warbler","Setophaga discolor","L3617447","Addison Woods--Addison Bog",2025-07-29,1,TRUE,FALSE,FALSE,"S263614125",NA
+"scatan","Scarlet Tanager","Piranga olivacea","L109192","East Rock Park",2025-07-29,1,TRUE,FALSE,FALSE,"S263616262",NA
+"norhar2","Northern Harrier","Circus hudsonius","L1880516","Hammonasset Beach SP--Meig's Point Parking Lot/Marshes",2025-07-28,1,TRUE,TRUE,FALSE,"S263374434",NA
+"libher","Little Blue Heron","Egretta caerulea","L50616463","16 Hammock Rd N, Westbrook US-CT 41.27800, -72.47027",2025-07-28,1,TRUE,FALSE,TRUE,"S263346766",NA
+"comnig","Common Nighthawk","Chordeiles minor","L50583014","7 New Milford Tpke, New Preston Marble Dale US-CT (41.6812,-73.3343)",2025-07-27,1,TRUE,TRUE,TRUE,"S263206188",NA
+"easmea","Eastern Meadowlark","Sturnella magna","L450147","Rocky Hill Meadows",2025-07-27,4,TRUE,FALSE,FALSE,"S263169874",NA
+"norbob","Northern Bobwhite","Colinus virginianus","L109158","Silver Sands SP",2025-07-27,1,TRUE,TRUE,FALSE,"S263199452","X"
+"boboli","Bobolink","Dolichonyx oryzivorus","L792599","Suffield WMA",2025-07-27,4,TRUE,FALSE,FALSE,"S263165459",NA
+"graspa","Grasshopper Sparrow","Ammodramus savannarum","L792599","Suffield WMA",2025-07-27,3,TRUE,FALSE,FALSE,"S263165459",NA
+"bkbcuc","Black-billed Cuckoo","Coccyzus erythropthalmus","L1581613","Hartman Park--Lyme Land Trust",2025-07-24,1,TRUE,FALSE,FALSE,"S262372010",NA
+"sedwre1","Sedge Wren","Cistothorus stellaris","L280564","Sherwood Island State Park",2025-07-21,1,TRUE,TRUE,FALSE,"S261771487",NA
+"amewoo","American Woodcock","Scolopax minor","L11530074","Miles Wildlife Santuary",2025-07-20,1,TRUE,FALSE,FALSE,"S261432044",NA
+"margod","Marbled Godwit","Limosa fedoa","L109201","Griswold Point",2025-07-20,1,TRUE,TRUE,FALSE,"S261554649",NA
+"cerwar","Cerulean Warbler","Setophaga cerulea","L50149275","J.N. Webster Scouts, Ashford US-CT 41.87685, -72.14957",2025-07-20,1,TRUE,FALSE,TRUE,"S261399184",NA
+"easwpw1","Eastern Whip-poor-will","Antrostomus vociferus","L13713787","104 Pinnacle Rd, Plainville US-CT 41.68934, -72.83753",2025-07-13,1,TRUE,FALSE,TRUE,"S259672518",NA
