@@ -160,3 +160,28 @@ priority_summary <- priority_df %>%
 
 print(priority_summary)
 
+# Add lat and lon columns
+priority_sf <- priority_sf %>%
+  mutate(
+    longitude = st_coordinates(.)[, 1],
+    latitude = st_coordinates(.)[, 2]
+  )
+
+#Heatmap
+leaflet(priority_sf) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addHeatmap(
+    lng = ~longitude,
+    lat = ~latitude,
+    radius = 20,
+    blur = 1,
+    max = 1  # Adjust max to intensify the colors
+  ) %>%
+  fitBounds(
+    lng1 = min(priority_sf$longitude),
+    lat1 = min(priority_sf$latitude),
+    lng2 = max(priority_sf$longitude),
+    lat2 = max(priority_sf$latitude)
+  )
+
+
