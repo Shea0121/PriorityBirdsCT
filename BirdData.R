@@ -7,6 +7,7 @@ install.packages("leaflet")
 install.packages("plotly")
 install.packages("stringr")
 install.packages("sf")
+install.packages("leaflet.extras")
 library(plotly)
 library(avilistr)
 library(dplyr)
@@ -16,6 +17,8 @@ library(lubridate)
 library(leaflet)
 library(stringr)
 library(sf)
+library(leaflet.extras)
+
 
 
 data(avilist_2025)
