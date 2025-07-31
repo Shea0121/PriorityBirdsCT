@@ -111,7 +111,7 @@ leaflet(priority_recent) %>%
   )
 
 # Load Natural Diversity Database shapefile
-nddb <- st_read("/Users/sheagelsomino/Downloads/Natural_Diversity_Database/Natural_Diversity_Database.shp")
+nddb <- st_read("Natural_Diversity_Database/Natural_Diversity_Database.shp")
 # Transform to long/lat WGS84
 nddb <- st_transform(nddb, crs = 4326)
 
