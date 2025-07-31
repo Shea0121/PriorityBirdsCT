@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><MD_Metadata xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:xalan="http://xml.apache.org/xalan" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gmx="http://www.isotc211.org/2005/gmx" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gml="http://www.opengis.net/gml" xmlns="http://www.isotc211.org/2005/gmd">
+    <characterSet>
+        <MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</MD_CharacterSetCode>
+    </characterSet>
+    <hierarchyLevel>
+        <MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset" codeSpace="ISOTC211/19115">dataset</MD_ScopeCode>
+    </hierarchyLevel>
+    <hierarchyLevelName>
+        <gco:CharacterString>dataset</gco:CharacterString>
+    </hierarchyLevelName>
+    <contact gco:nilReason="missing"/>
+    <dateStamp gco:nilReason="missing"/>
+    <metadataStandardName>
+        <gco:CharacterString>ISO 19139 Geographic Information - Metadata - Implementation Specification</gco:CharacterString>
+    </metadataStandardName>
+    <metadataStandardVersion>
+        <gco:CharacterString>2007</gco:CharacterString>
+    </metadataStandardVersion>
+    <identificationInfo>
+        <MD_DataIdentification>
+            <citation>
+                <CI_Citation>
+                    <title>
+                        <gco:CharacterString>Natural Diversity Database Area</gco:CharacterString>
+                    </title>
+                    <date gco:nilReason="missing"/>
+                </CI_Citation>
+            </citation>
+            <abstract>
+                <gco:CharacterString>See full Resource Data Guide here.Abstract: The Natural Diversity Database Areas is a 1:24,000-scale, polygon feature-based layer that represents general locations of endangered, threatened and special concern species. The layer is based on information collected by DEEP biologists, cooperating scientists, conservation groups and landowners. In some cases an occurrence represents a location derived from literature, museum records and specimens. These data are compiled and maintained by the DEEP Bureau of Natural Resources, Natural Diversity Database Program. The layer is updated every six months and reflects information that has been submitted and accepted up to that point. The layer includes state and federally listed species. It does not include Critical Habitats, Natural Area Preserves, designated wetland areas or wildlife concentration areas. These general locations were created by randomly shifting the true locations of terrestrial species and then adding a 0.25 mile buffer distance to each point, and by mapping linear segments with a 300 foot buffer associated with aquatic, riparian and coastal species. The exact location of the species observation falls somewhere within the polygon area and not necessarily in the center. Attribute information includes the date when these data were last updated. Species names are withheld to protect sensitive species from collection and disturbance. Data is compiled at 1:24,000 scale. These data are updated every six months, approximately in June and December. It is important to use the most current data available.Purpose: This dataset was developed to help state agencies and landowners comply with the State Endangered Species Act. Under the Act, state agencies are required to ensure that any activity authorized, funded or performed by the state does not threatened the continued existence of endangered or threatened species or their essential habitat. Applicants for certain state and local permits may be required to consult with the Department of Energy and Environmental Protections's Natural Diversity Data Base (NDDB) as part of the permit process. Follow instructions provided in the appropriate permit guidance. If you require a federal endangered species review, work with your federal regulatory agency and review the US Fish &amp;amp; Wildlife IPaC tool. Natural Diversity Data Base Areas are intended to be used as a pre-screening tool to identify potential impacts to known locations of state listed species. To use this data for site-based endangered species review, locate the project boundaries and any additionally affected areas on the map. If any part of the project is within a NDDB Area then the project may have a conflict with listed species. In the case of a potential conflict, an Environmental Review Request (https://portal.ct.gov/deep-nddbrequest) should be made to the Natural Diversity Data Base for further review. The DEEP will provide recommendations for avoiding impacts to state listed species. Additional onsite surveys may be requested of the applicant depending on the nature and scope of a project. For this reason, applicants should apply early in the planning stages of a project. Not all land use choices will impact the particular species that is present. Often minor modifications to the proposed plan can alleviate conflicts with state listed species.Other uses of the data include targeting areas for conservation or site management to enhance and protect rare species habitats.Supplemental information: For additional information, refer to the Department of Energy and Environmental Protection Endangered Species web page at https://portal.ct.gov/DEEP/Endangered-Species/Connecticuts-Endangered-Threatened-and-Special-Concern-Species</gco:CharacterString>
+            </abstract>
+            <purpose>
+                <gco:CharacterString>Natural Diversity Database Areas represent known locations, both historic and extant, of state and federal listed species. State listed species are those listed as Endangered, Threatened or Special Concern under the Connecticut Endangered Species Act (Connecticut General Statutes, Section 26-303 and Regulations of Connecticut State Agencies 26-303). This dataset represents over 100 years worth of field observations, scientific collections, and publications. The data have been compiled from a variety of sources and in most cases do not represent a comprehensive or state-wide survey. Sources include state biologists, university students and professors, conservation organizations and private landowners. Low accuracy reports of species at the town or county level have been excluded. Much of the state is in private ownership and has not been surveyed. Unmapped areas may represent potential habitat that has not been adequately surveyed for all taxa.</gco:CharacterString>
+            </purpose>
+            <credit>
+                <gco:CharacterString>The layer is based on information collected by Department of Energy and Environmental Protection (DEEP) staff, cooperating scientists, conservation groups and landowners. In some cases an occurrence represents a location derived from literature, museum records and specimens. These data are compiled and maintained by the Department of Energy and Environmental Protection, Bureau of Natural Resources, Wildlife Division, Natural Diversity Data Base Program.</gco:CharacterString>
+            </credit>
+            <descriptiveKeywords>
+                <MD_Keywords>
+                    <keyword>
+                        <gco:CharacterString>biota</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>Natural Diversity Database Area</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>Bioscience</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>Habitat</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>species</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>data guide</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>CT</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>data base</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>database</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>natural</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>diversity</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>areas</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>nddb</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>DEEP</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>CTDEEP</gco:CharacterString>
+                    </keyword>
+                    <keyword>
+                        <gco:CharacterString>NDDB</gco:CharacterString>
+                    </keyword>
+                </MD_Keywords>
+            </descriptiveKeywords>
+            <resourceConstraints>
+                <MD_Constraints>
+                    <useLimitation>
+                        <gco:CharacterString>No restrictions or legal prerequisites for using the data after access is granted. This information does not include Critical Habitats, Natural Area Preserves, designated wetland areas or wildlife concentration areas. Because of the limited attribute information and buffered locations, this dataset is not suitable for species distribution information or analysis. Use of this generalized product is limited to a pre-screening tool and follow up with the Department of Energy and Environmental Protection (DEEP) is required for more specific information. Suitable and potentially occupied habitat may extend beyond mapped observation areas. Unmapped areas may represent potential habitat that has not been adequately surveyed for all taxa.The data is suitable for use at appropriate scale, and is not intended for maps printed at scales greater or more detailed than 1:24,000 scale (1 inch = 2,000 feet). Although these data have been used by the State of Connecticut, Department of Energy and Environmental Protection, no warranty, expressed or implied, is made by the State of Connecticut, Department of Energy and Environmental Protection as to the accuracy of the data and or related materials. The act of distribution shall not constitute any such warranty, and no responsibility is assumed by the State of Connecticut, Department of Energy and Environmental Protection in the use of these data or related materials. The user assumes the entire risk related to the use of these data. Once the data is distributed to the user, modifications made to the data by the user should be noted in the metadata. When printing this data on a map or using it in a software application, analysis, or report, please acknowledge the State of Connecticut, Department of Energy and Environmental Protection as the source for this information. For example, include the following data source description when printing this layer on a map: Natural Diversity Database Areas - Compiled by CT DEEP.CC0</gco:CharacterString>
+                    </useLimitation>
+                </MD_Constraints>
+            </resourceConstraints>
+            <language gco:nilReason="missing"/>
+            <characterSet>
+                <MD_CharacterSetCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_CharacterSetCode" codeListValue="utf8" codeSpace="ISOTC211/19115">utf8</MD_CharacterSetCode>
+            </characterSet>
+        </MD_DataIdentification>
+    </identificationInfo>
+</MD_Metadata>
