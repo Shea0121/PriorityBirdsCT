@@ -8,6 +8,8 @@ install.packages("plotly")
 install.packages("stringr")
 install.packages("sf")
 install.packages("leaflet.extras")
+install.packages("gt")
+install.packages("rlang") #needed for update to rlang to 1.1.4 to run gt
 library(plotly)
 library(avilistr)
 library(dplyr)
@@ -18,6 +20,7 @@ library(leaflet)
 library(stringr)
 library(sf)
 library(leaflet.extras)
+library(gt)
 
 
 
@@ -161,7 +164,26 @@ priority_summary <- priority_df %>%
     "Sightings in Last 30 Days" = n
   )
 
-print(priority_summary)
+# Format with gt
+priority_summary %>%
+  gt() %>%
+  tab_header(
+    title = "Bird Sightings in the Last 30 Days"
+  ) %>%
+  cols_label(
+    `Bird Name` = "Bird Species",
+    `Sightings in Last 30 Days` = "Number of Sightings"
+  ) %>%
+  fmt_number(
+    columns = `Sightings in Last 30 Days`,
+    decimals = 0
+  ) %>%
+  tab_options(
+    table.font.size = "medium",
+    row.striping.background_color = "#f9f9f9",
+    heading.title.font.size = 16,
+    heading.title.font.weight = "bold"
+  )
 
 # Add lat and lon columns
 priority_sf <- priority_sf %>%
