@@ -9,7 +9,7 @@ install.packages("stringr")
 install.packages("sf")
 install.packages("leaflet.extras")
 install.packages("gt")
-install.packages("rlang") #needed for update to rlang to 1.1.4 to run gt
+install.packages("rlang")
 library(plotly)
 library(avilistr)
 library(dplyr)
@@ -22,16 +22,8 @@ library(sf)
 library(leaflet.extras)
 library(gt)
 
-
-
-data(avilist_2025)
-data(avilist_metadata) 
-
 file.edit("~/.Renviron")
 readRenviron("~/.Renviron")
-
-
-
 
 
 priority_species <- c(
@@ -53,6 +45,25 @@ recent <- ebirdregion(loc = "US-CT", max = 500)
 priority_recent <- recent %>%
   filter(comName %in% priority_species) %>%
   mutate(obsDt = as.Date(obsDt))  # Convert date column
+
+#Add Conservation status
+priority_recent <- priority_recent %>%
+  mutate(status = case_when(
+    comName %in% c("Sedge Wren", "Bobolink", "Piping Plover", 
+                   "Wood Thrush", "Upland Sandpiper") ~ "Near Threatened",
+    comName %in% c("Saltmarsh Sparrow") ~ "High Concern",
+    comName %in% c("Cerulean Warbler") ~ "Vulnerable",
+    comName %in% c("American Black Duck", "American Oystercatcher", "Bald Eagle",
+                   "Black-crowned Night-Heron", "Least Tern", "Northern Harrier", 
+                   "Prairie Warbler", "Eastern Meadowlark", "Great Egret", 
+                   "Northern Bobwhite", "American Woodcock", "Marbled Godwit", 
+                   "Swainson's Hawk", "Eastern Whip-poor-will", "Ruby-throated Hummingbird", 
+                   "Black-billed Cuckoo", "Scarlet Tanager", "White-eyed Vireo", 
+                   "Common Nighthawk", "Little Blue Heron", "Barn Owl", 
+                   "Grasshopper Sparrow") ~ "Low Concern",
+    TRUE ~ NA_character_
+  ))
+
 
 # Create color palette
 pal <- colorNumeric(
@@ -87,24 +98,6 @@ priority_recent <- recent %>%
   filter(comName %in% priority_species) %>%
   mutate(obsDt = as.Date(obsDt))  # Convert date column
 
-#Add Conservation status
-priority_recent <- priority_recent %>%
-  mutate(status = case_when(
-    comName %in% c("Sedge Wren", "Bobolink", "Piping Plover", 
-                   "Wood Thrush", "Upland Sandpiper") ~ "Near Threatened",
-    comName %in% c("Saltmarsh Sparrow") ~ "High Concern",
-    comName %in% c("Cerulean Warbler") ~ "Vulnerable",
-    comName %in% c("American Black Duck", "American Oystercatcher", "Bald Eagle",
-                   "Black-crowned Night-Heron", "Least Tern", "Northern Harrier", 
-                   "Prairie Warbler", "Eastern Meadowlark", "Great Egret", 
-                   "Northern Bobwhite", "American Woodcock", "Marbled Godwit", 
-                   "Swainson's Hawk", "Eastern Whip-poor-will", "Ruby-throated Hummingbird", 
-                   "Black-billed Cuckoo", "Scarlet Tanager", "White-eyed Vireo", 
-                   "Common Nighthawk", "Little Blue Heron", "Barn Owl", 
-                   "Grasshopper Sparrow") ~ "Low Concern",
-    TRUE ~ NA_character_
-  ))
-  
 # Create color palette
 pal <- colorNumeric(
   palette = "YlOrRd",
@@ -131,6 +124,9 @@ leaflet(priority_recent) %>%
     labFormat = labelFormat(transform = function(x) as.Date(x, origin = "1970-01-01"))
   )
 
+
+
+
 # Load Natural Diversity Database shapefile
 nddb <- st_read("Natural_Diversity_Database/Natural_Diversity_Database.shp")
 # Transform to long/lat WGS84
@@ -142,6 +138,16 @@ plot(nddb$geometry)
 # Convert eBird sightings to sf points
 priority_sf <- priority_recent %>%
   st_as_sf(coords = c("lng", "lat"), crs = 4326)
+
+priority_sf <- priority_sf %>%
+  mutate(
+    status = case_when(
+      comName %in% c("Sedge Wren", "Bobolink", "Piping Plover", "Wood Thrush", "Upland Sandpiper") ~ "Near Threatened",
+      comName %in% c("Saltmarsh Sparrow") ~ "High Concern",
+      comName %in% c("Cerulean Warbler") ~ "Vulnerable",
+      TRUE ~ "Low Concern"
+    )
+  )
 
 # Create the leaflet map
 leaflet() %>%
@@ -171,6 +177,13 @@ leaflet() %>%
   )
 
 
+# Convert sf to regular data frame before saving
+priority_df <- st_drop_geometry(priority_sf)
+
+# Save to CSV
+write.csv(priority_df, "filtered_priority_ebird.csv", row.names = FALSE)
+
+
 #Species sighting frequencies 
 priority_df <- read.csv("filtered_priority_ebird.csv")
 
@@ -181,6 +194,9 @@ priority_summary <- priority_df %>%
     "Bird Name" = comName,
     "Sightings in Last 30 Days" = n
   )
+
+print(priority_summary)
+
 
 # Format with gt
 priority_summary %>%
@@ -225,6 +241,5 @@ leaflet(priority_sf) %>%
     lat1 = min(priority_sf$latitude),
     lng2 = max(priority_sf$longitude),
     lat2 = max(priority_sf$latitude)
-  )
-
+  ) 
 
