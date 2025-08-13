@@ -6,7 +6,8 @@ library(leaflet)
 library(leaflet.extras)
 library(gt)
 library(lubridate)
-
+library(bslib)
+library(shinycssloaders)
 
 
 priority_species <- c(
@@ -25,7 +26,7 @@ priority_species <- c(
 nddb <- sf::st_read("Natural_Diversity_Database/Natural_Diversity_Database.shp", quiet = TRUE) %>%
   st_transform(crs = 4326)
 
-library(bslib)
+
 
 ui <- fluidPage(
   theme = bs_theme(
@@ -66,14 +67,42 @@ ui <- fluidPage(
                  )
              )
     ),
+    
     tabPanel("Sightings Frequency",  
              gt_output("freq_table")
     ),
+    
     tabPanel("Sightings & Conservation Map",
-             leafletOutput("sightings_map", height = 600)
+             wellPanel(
+               h4("About This Map"),
+               p("This interactive map displays recent sightings of Connecticut's priority bird species 
+              from the last 30 days. Each dot represents a sighting of one of the 29 listed species, 
+              with the dot color showing its conservation status (green = Low Concern, orange = Near Threatened, 
+              red = High Concern, dark red = Vulnerable)."),
+               p("The green shaded areas come from the Natural Diversity Data Base (NDDB), which highlights 
+              approximate locations of endangered, threatened, and special concern species, as well as 
+              important natural communities in Connecticut."),
+               p("Click a dot to see details such as species name, date, location, and number of birds observed.")
+             ),
+             withSpinner(
+               leafletOutput("sightings_map", height = 600),
+               type = 4, color = "#2C6E49"
+             )
     ),
+    
     tabPanel("Heatmap of Sightings",
-             leafletOutput("heatmap_map", height = 600)
+             wellPanel(
+               h4("About This Heatmap"),
+               p("This map shows the density of recent priority bird sightings in Connecticut from the last 30 days. 
+              Warmer colors (yellow, orange, red) indicate higher concentrations of sightings in that area."),
+               p("The NDDB polygons are shown in green, just like in the first map, to provide context 
+              for areas of special conservation interest."),
+               p("Use zoom and pan to explore, and compare the heatmap with the sightings map to spot patterns.")
+             ),
+             withSpinner(
+               leafletOutput("heatmap_map", height = 600),
+               type = 4, color = "#2C6E49"
+             )
     )
   ),
   
@@ -98,7 +127,7 @@ server <- function(input, output, session) {
   
   # Get recent sightings 
   priority_recent <- reactive({
-    recent <- ebirdregion(loc = "US-CT", back = 30, max = 5000, key = "uq6va2898b7s")
+    recent <- ebirdregion(loc = "US-CT", back = 30, max = 5000)
     recent %>%
       filter(comName %in% priority_species) %>%
       mutate(obsDt = as.Date(obsDt))
@@ -140,9 +169,32 @@ server <- function(input, output, session) {
   })
   
   
-  # Prepare sf points for mapping
+  # Reactive sf object with status column
   priority_sf <- reactive({
+    # Get the current value of priority_recent
     df <- priority_recent()
+    
+    # Add status column
+    df <- df %>%
+      mutate(
+        status = case_when(
+          comName %in% c("Sedge Wren", "Bobolink", "Piping Plover", "Wood Thrush", "Upland Sandpiper") ~ "Near Threatened",
+          comName %in% c("Saltmarsh Sparrow") ~ "High Concern",
+          comName %in% c("Cerulean Warbler") ~ "Vulnerable",
+          comName %in% c(
+            "American Black Duck", "American Oystercatcher", "Bald Eagle", 
+            "Black-crowned Night-Heron", "Least Tern", "Northern Harrier", 
+            "Prairie Warbler", "Eastern Meadowlark", "Great Egret", 
+            "Northern Bobwhite", "American Woodcock", "Marbled Godwit", 
+            "Swainson's Hawk", "Eastern Whip-poor-will", "Ruby-throated Hummingbird", 
+            "Black-billed Cuckoo", "Scarlet Tanager", "White-eyed Vireo", 
+            "Common Nighthawk", "Little Blue Heron", "Barn Owl", "Grasshopper Sparrow"
+          ) ~ "Low Concern",
+          TRUE ~ NA_character_
+        )
+      )
+    
+    # Convert to sf with coordinates
     st_as_sf(df, coords = c("lng", "lat"), crs = 4326) %>%
       mutate(
         longitude = st_coordinates(.)[,1],
@@ -157,6 +209,14 @@ server <- function(input, output, session) {
   
   # Sightings & conservation map
   output$sightings_map <- renderLeaflet({
+    # Color palette for conservation status
+    pal_status <- reactive({
+      colorFactor(
+        palette = c("green", "darkred", "orange", "red"),  # colors in your desired order
+        levels = c("Low Concern", "Vulnerable", "Near Threatened", "High Concern")
+      )
+    })
+    
     leaflet() %>%
       addProviderTiles(providers$CartoDB.Positron) %>%
       addPolygons(
@@ -170,7 +230,7 @@ server <- function(input, output, session) {
       addCircleMarkers(
         data = priority_sf(),
         radius = 7,
-        fillColor = "orange",   
+        fillColor = ~pal_status()(status), # color by status
         fillOpacity = 0.8,
         stroke = TRUE,
         color = "black",
@@ -179,15 +239,23 @@ server <- function(input, output, session) {
           "<b>", comName, "</b><br>",
           "Date: ", obsDt, "<br>",
           "Location: ", locName, "<br>",
-          "Birds Spotted: ", howMany
+          "Birds Spotted: ", howMany, "<br>",
+          "Conservation Status: ", status  # added status
         ),
         group = "Bird Sightings"
       ) %>%
       addLayersControl(
         overlayGroups = c("NDDB Areas", "Bird Sightings"),
         options = layersControlOptions(collapsed = FALSE)
+      ) %>%
+      addLegend(
+        "bottomright",
+        pal = pal_status(),
+        values = priority_sf()$status,
+        title = "Conservation Status"
       )
   })
+  
   
   
   
@@ -228,7 +296,7 @@ server <- function(input, output, session) {
     # Add heatmap legend
     addLegend(
       position = "bottomright",
-      pal = pal_heat,
+      pal_heat <- colorNumeric(c("lightblue","skyblue","blue","navy"), domain = NULL),
       values = c(0, 1),
       title = "Sightings Density",
       opacity = 0.7,
