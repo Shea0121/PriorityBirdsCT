@@ -68,8 +68,13 @@ ui <- fluidPage(
              )
     ),
     
-    tabPanel("Sightings Frequency",  
-             gt_output("freq_table")
+    tabPanel(
+      "Sightings Frequency",
+      withSpinner(
+        gt_output("freq_table"),
+        type = 4,
+        color = "#2C6E49"
+      )
     ),
     
     tabPanel("Sightings & Conservation Map",
