@@ -87,6 +87,24 @@ priority_recent <- recent %>%
   filter(comName %in% priority_species) %>%
   mutate(obsDt = as.Date(obsDt))  # Convert date column
 
+#Add Conservation status
+priority_recent <- priority_recent %>%
+  mutate(status = case_when(
+    comName %in% c("Sedge Wren", "Bobolink", "Piping Plover", 
+                   "Wood Thrush", "Upland Sandpiper") ~ "Near Threatened",
+    comName %in% c("Saltmarsh Sparrow") ~ "High Concern",
+    comName %in% c("Cerulean Warbler") ~ "Vulnerable",
+    comName %in% c("American Black Duck", "American Oystercatcher", "Bald Eagle",
+                   "Black-crowned Night-Heron", "Least Tern", "Northern Harrier", 
+                   "Prairie Warbler", "Eastern Meadowlark", "Great Egret", 
+                   "Northern Bobwhite", "American Woodcock", "Marbled Godwit", 
+                   "Swainson's Hawk", "Eastern Whip-poor-will", "Ruby-throated Hummingbird", 
+                   "Black-billed Cuckoo", "Scarlet Tanager", "White-eyed Vireo", 
+                   "Common Nighthawk", "Little Blue Heron", "Barn Owl", 
+                   "Grasshopper Sparrow") ~ "Low Concern",
+    TRUE ~ NA_character_
+  ))
+  
 # Create color palette
 pal <- colorNumeric(
   palette = "YlOrRd",
