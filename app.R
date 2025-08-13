@@ -94,7 +94,7 @@ ui <- fluidPage(
              wellPanel(
                h4("About This Heatmap"),
                p("This map shows the density of recent priority bird sightings in Connecticut from the last 30 days. 
-              Warmer colors (yellow, orange, red) indicate higher concentrations of sightings in that area."),
+              Darker blue areas indicate higher concentrations of sightings, while lighter blue areas indicate fewer sightings."),
                p("The NDDB polygons are shown in green, just like in the first map, to provide context 
               for areas of special conservation interest."),
                p("Use zoom and pan to explore, and compare the heatmap with the sightings map to spot patterns.")
